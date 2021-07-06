@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/**
+ * @name Figure
+ * @desc 图形
+ */
+.figure {
+  background: red;
+  margin: 0 auto;
+}
+.figure.figure-square {
+  width: 100px;
+  height: 100px;
+}
+
+/*# sourceMappingURL=index.css.map */

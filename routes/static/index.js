@@ -12,16 +12,36 @@
           name: "Home",
           path: "/",
         },
-        require("./dev"),
         {
           path: "/component",
           children: [
             {
+              name: "Text",
+              description: "文本"
+            },
+            {
               name: "Button",
               description: "按钮",
               path: "/button",
-              component: "",
+              component: "views/static/component/button/index",
             },
+            {
+              name: "Loading",
+              description: "加载状态",
+              path: "/loading",
+              component: "views/static/component/loading/index"
+            },
+            {
+              name: "Progress",
+              description: "进度条",
+              path: "/progress",
+              component: "views/static/component/progress/index"
+            },
+            {name: "Table", description: "表格"},
+            {name: "Navs", description: "标签页"},
+            {name: "Navbar", description: "导航条"},
+            {name: "Figure", description: "图形", path: "/figure", component: "views/static/component/figure/index"},
+
           ],
         },
         {name: "Layout", description: "布局", path: "/layout", children: []},

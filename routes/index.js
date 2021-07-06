@@ -4,6 +4,9 @@
   define(function (require, exports, module) {
     require("director");
     const Handlebars = require("handlebars");
+    Handlebars.registerHelper('wrapper', function (path) {
+      return path.split("/").slice(1).join("-") + "-wrapper"
+    })
     const config = require("../app.config");
     // 代理路由
     const proxyViews = {
@@ -29,21 +32,22 @@
       )
       .configure({
         on: function (...args) {
-          console.log("on", args);
+          // console.log("on", args);
           $(".loading").fadeOut(1000);
         },
         once: function (...args) {
-          console.log("once", args);
+          // console.log("once", args);
         },
         after: function (...args) {
-          console.log("after", args);
+          // console.log("after", args);
         },
         before: function (...args) {
           $(".loading").fadeIn(100);
-          renderView({ routes, config });
+          renderView({routes, config});
         },
       })
       .init();
+
     // console.log(router);
 
     function renderView(options) {

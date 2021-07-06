@@ -1,4 +1,26 @@
+@charset "UTF-8";
 .btn {
   border-bottom: 4px;
 }
+
+/**
+ * Loading
+ * 加载状态
+ */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
 /*# sourceMappingURL=index.css.map */

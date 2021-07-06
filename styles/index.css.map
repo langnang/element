@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AEAA,AAAA,IAAI,CAAC;EACH,aAAa,EAAE,GAAG;CACnB",
-    "sources": [
-        "index.scss",
-        "component/index.scss",
-        "component/button/index.scss"
-    ],
-    "names": [],
-    "file": "index.css"
-}
+{"version":3,"sourceRoot":"","sources":["component/button/index.scss","component/loading/index.scss","index.scss"],"names":[],"mappings":";AAAA;EACE;;;ACDF;AAAA;AAAA;AAAA;ACGA;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE","file":"index.css"}
