@@ -46,6 +46,16 @@
               description: "滚动条",
               path: "/scrollbar",
               component: "views/static/component/scrollbar/index"
+            }, {
+              name: "Input",
+              description: "输入框",
+              path: "/input",
+              component: "views/static/component/input/index"
+            }, {
+              name: "Checkbox",
+              description: "多选框",
+              path: "/checkbox",
+              component: "views/static/component/checkbox/index"
             },
 
           ],
