@@ -41,10 +41,30 @@
             {name: "Navs", description: "标签页"},
             {name: "Navbar", description: "导航条"},
             {name: "Figure", description: "图形", path: "/figure", component: "views/static/component/figure/index"},
+            {
+              name: "Scrollbar",
+              description: "滚动条",
+              path: "/scrollbar",
+              component: "views/static/component/scrollbar/index"
+            },
 
           ],
         },
-        {name: "Layout", description: "布局", path: "/layout", children: []},
+        {
+          name: "Skin", description: "皮肤", path: "/skin", children: []
+        },
+        {
+          name: "Layout", description: "布局", path: "/layout", children: [
+            {
+              name: "Grid", description: "栅格", path: "/grid",
+              component: "views/static/layout/grid/index"
+            },
+            {
+              name: "Masonry", description: "瀑布流", path: "/masonry",
+              component: "views/static/layout/masonry/index"
+            }
+          ]
+        },
         {name: "Effect", description: "特效", path: "/effect", children: []},
         {
           name: "UI",

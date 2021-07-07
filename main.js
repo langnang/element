@@ -9,16 +9,17 @@
     if (config.env === "dev") {
       require(["css!https://langnang.github.io/assets/css/main.css"]);
     } else {
-      require(["css!./..//assets/css/main.css"]);
+      require(["css!./../assets/css/main.css"]);
     }
     require([
       "jquery",
       "handlebars",
       "bootstrap",
       "holderjs",
-      "./routes/index",
       "css!./assets/css/main.css",
+      "css!./styles/index.css",
     ], function ($, Handlebars) {
+      require(["./routes/index"])
       Promise.all([
         new Promise(function (resolve, reject) {
           $.ajax({
