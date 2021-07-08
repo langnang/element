@@ -559,6 +559,10 @@
  * Loading
  * 加载状态
  */
+/**
+ * @name Radio
+ * @desc 单选框
+ */
 .text-center {
   text-align: center;
 }
@@ -573,6 +577,12 @@
 
 .pull-left {
   float: left;
+}
+
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
 }
 
 /*# sourceMappingURL=index.css.map */

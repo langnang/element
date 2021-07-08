@@ -14,16 +14,17 @@
       "/vue": "/vue/index",
     };
 
-    // 原始路由
-    const routes = flattenRoutes([
+    const $routes = [
       require("./static/index"),
       // require("./vue/index"),
       // require("./react/index"),
       // require("./dev/index"),
-    ]);
-    // console.log(routes);
+    ]
+    // 原始路由
+    const routes = flattenRoutes($routes);
+    console.log(routes);
     // 转换为符合 director 的路由格式
-    const router = window
+    window
       .Router(
         Object.keys(routes).reduce((total, val) => {
           total[val] = [];
@@ -43,13 +44,15 @@
         },
         before: function (...args) {
           $(".loading").fadeIn(100);
-          renderView({routes, config});
+          renderView({router: this, $routes, routes, config});
         },
       })
       .init();
 
-    // console.log(router);
-
+    /**
+     * @desc 渲染视图
+     * @param options
+     */
     function renderView(options) {
       options.path =
         options.path ||
@@ -61,7 +64,9 @@
         );
       const route = options.routes[options.path];
       let callback = Object.assign(options, {
-        route,
+        route: {
+          ...route,
+        },
         Handlebars,
         template: `<div name="${options.path
           .substr(1)
@@ -82,6 +87,8 @@
         run() {
           this.render();
         },
+        convertUrlParams,
+        $params: getUrlPramas()
       });
       if (route.component) {
         require([route.component], function (res) {
@@ -95,21 +102,55 @@
       }
     }
 
-    // 展平嵌套路由
+    /**
+     * @desc 展平嵌套路由
+     * @param routes
+     * @param parent
+     * @returns {Object}
+     */
     function flattenRoutes(routes, parent = "") {
-      return routes.reduce((t0, t1) => {
+      return (routes instanceof Array ? routes : Object.values(routes)).reduce((t0, t1) => {
         return {
-          ...(t1.children
-            ? flattenRoutes(t1.children, parent + (t1.path || ""))
-            : {}),
-          ...t0,
+
           [parent + (t1.proxyPath ? t1.proxyPath : t1.path || "")]: {
             ...t1,
             _path: t1.path,
             path: parent + (t1.path || ""),
           },
+          ...(t1.children
+            ? flattenRoutes(t1.children, parent + (t1.path || ""))
+            : {}),
+          ...t0,
+
         };
       }, {});
+    }
+
+    /**
+     * @desc 获取地址栏参数
+     */
+    function getUrlPramas(url = location.href) {
+      if (url.indexOf("?") === -1) {
+        return {}
+      }
+      const params = url.substr(url.indexOf("?") + 1).split("&").reduce((total, value) => {
+        const keyValue = value.split("=");
+        total[keyValue[0]] = keyValue[1];
+        return total;
+      }, {});
+      console.log(params);
+      return params;
+    }
+
+    /**
+     * @desc 对象转地址栏参数
+     */
+    function convertUrlParams(params = {}) {
+      let href = Object.keys(params).reduce((total, value) => total + `&${value}=${params[value]}`, "").substr(1);
+      if (href != "") {
+        href = "?" + href;
+      }
+      return href
     }
   });
 })(define);
