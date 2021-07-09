@@ -67,7 +67,7 @@
 .ln-grid-container-fluid [class*=ln-col-] {
   float: left;
   min-height: 1px;
-  padding: 5px 10px;
+  padding: 0px 10px;
   /* Gutter的设置 同时和前面Container设置的一样，所以Column里面可以直接嵌套Row，而不需要Container */
 }
 @media (min-width: 768px) {
@@ -563,6 +563,18 @@
  * @name Radio
  * @desc 单选框
  */
+.ln-todolist-container .ln-todolist-group .ln-todolist-item input[type=checkbox]:checked {
+  opacity: 0.5;
+}
+.ln-todolist-container .ln-todolist-group .ln-todolist-item input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.ln-todolist-container .ln-todolist-group .ln-todolist-item .is-done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .text-center {
   text-align: center;
 }

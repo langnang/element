@@ -5,9 +5,35 @@
       template: require("text!views/static/home/index.hbs"),
       run: function ({render, router, routes, $routes, route, template, Handlebars, $params, convertUrlParams}) {
         // console.log(router, routes, route, $routes);
-        route.children = $routes.find(v => v.name == "static").children.filter(
-          (item) =>
-            item.path !== "/dev" && item.children && (item.children instanceof Array ? item.children : Object.values(item.children)).length > 0
+        route.children = $routes.find(v => v.name == "static").children.reduce(
+          (total, item) => {
+            // 非 开发
+            if (item.path === '/dev') return total;
+            // 非 没有子类
+            if (!item.children) return total;
+            // 若 为数组
+            if (item.children instanceof Array) {
+              const children = item.children.filter(i => i.name && i.description && i.path && i.component);
+              if (children.length == 0) {
+                return total;
+              } else {
+                total.push({...item, children,})
+                return total;
+              }
+            }
+            // 则 为对象
+            else {
+              const children = Object.values(item.children).filter(i => i.name && i.description && i.path && i.component);
+              if (children.length == 0) {
+                return total;
+              } else {
+                total.push({...item, children,})
+                return total;
+              }
+            }
+            // return (item.children instanceof Array ? item.children.filter(i => i.name && i.description && i.path && i.component) : Object.values(item.children).filter(i => i.name && i.description && i.path && i.component)).length > 0
+            return total;
+          }, []
         );
         Handlebars.registerHelper(
           "link",

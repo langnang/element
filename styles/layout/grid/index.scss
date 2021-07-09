@@ -44,7 +44,7 @@
   [class*='ln-col-'] {
     float: left;
     min-height: 1px;
-    padding: 5px 10px; /* Gutter的设置 同时和前面Container设置的一样，所以Column里面可以直接嵌套Row，而不需要Container */
+    padding: 0px 10px; /* Gutter的设置 同时和前面Container设置的一样，所以Column里面可以直接嵌套Row，而不需要Container */
   }
 
   /* 小屏幕 平板等 屏幕宽度大于等于768px */
